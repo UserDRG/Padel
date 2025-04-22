@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padel - Votre Centre de Padel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #03A9F4;
+            --dark: #333;
+            --light: #f9f9f9;
+            --gray: #777;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            color: #ffeb3b;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            height: 80vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .courts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .court-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .court-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .court-img {
+            height: 250px;
+            background-color: #ddd;
+            position: relative;
+        }
+        
+        .court-details {
+            padding: 1.5rem;
+            background-color: white;
+        }
+        
+        .court-details h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .court-details p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            font-size: 1rem;
+            padding: 1rem;
+        }
+        
+        .btn-block:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            animation: modalopen 0.5s;
+        }
+        
+        @keyframes modalopen {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+        
+        .modal-header {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background-color: #f1f1f1;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+            
+            .hero {
+                height: auto;
+                padding: 4rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Padel<span>Pro</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#terrains">Terrains</a></li>
+                    <li><a href="#tarifs">Tarifs</a></li>
+                    <li><a href="#cours">Cours</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="openModal('loginModal')">Connexion</button>
+                <button class="btn btn-primary" onclick="openModal('registerModal')">Inscription</button>
+            </div>
+        </div>
+    </header>
+    
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Bienvenue au centre de Padel</h1>
+            <p>Découvrez la passion du padel dans notre centre moderne équipé des meilleures installations pour tous les niveaux.</p>
+            <a href="#contact" class="btn btn-primary">Réserver un terrain</a>
+        </div>
+    </section>
+    
+    <section id="services" class="container">
+        <h2 class="section-title">Nos Services</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Compétitions</h3>
+                <p>Participez à nos tournois réguliers et affrontez d'autres passionnés dans une ambiance conviviale.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍🏫</div>
+                <h3>Cours Professionnels</h3>
+                <p>Apprenez avec nos instructeurs certifiés et améliorez votre technique à tous les niveaux.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>Installations Premium</h3>
+                <p>Profitez de nos installations modernes avec vestiaires, douches et espace détente.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="terrains" class="container">
+        <h2 class="section-title">Nos Terrains</h2>
+        <div class="courts">
+            <div class="court-card">
+                <div class="court-img" style="background-image: url('/api/placeholder/400/250'); background-size: cover; background-position: center;"></div>
+                <div class="court-details">
+                    <h3>Terrain Intérieur 1</h3>
+                    <p>Terrain couvert avec éclairage professionnel et sol premium.</p>
+                    <div class="price">25€/heure</div>
+                    <button class="btn btn-primary" onclick="openModal('bookingModal')">Réserver</button>
+                </div>
+            </div>
+            <div class="court-card">
+                <div class="court-img" style="background-image: url('/api/placeholder/400/250'); background-size: cover; background-position: center;"></div>
+                <div class="court-details">
+                    <h3>Terrain Intérieur 2</h3>
+                    <p>Terrain couvert premium idéal pour les tournois et matchs importants.</p>
+                    <div class="price">28€/heure</div>
+                    <button class="btn btn-primary" onclick="openModal('bookingModal')">Réserver</button>
+                </div>
+            </div>
+            <div class="court-card">
+                <div class="court-img" style="background-image: url('/api/placeholder/400/250'); background-size: cover; background-position: center;"></div>
+                <div class="court-details">
+                    <h3>Terrain Extérieur</h3>
+                    <p>Terrain extérieur avec vue panoramique et ambiance unique.</p>
+                    <div class="price">20€/heure</div>
+                    <button class="btn btn-primary" onclick="openModal('bookingModal')">Réserver</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="container">
+        <h2 class="section-title">Contactez-nous</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Objet</label>
+                    <input type="text" id="subject" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-block">Envoyer</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Connexion Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Connexion</h2>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Mot de passe</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                <div style="text-align: right; margin-bottom: 1rem;">
+                    <a href="#" style="color: var(--primary); text-decoration: none;">Mot de passe oublié?</a>
+                </div>
+                <button type="submit" class="btn btn-block">Se connecter</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Inscription Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Inscription</h2>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'clientTab')">Client</button>
+                <button class="tab" onclick="openTab(event, 'adminTab')">Administrateur</button>
+            </div>
+            
+            <div id="clientTab" class="tab-content active">
+                <form id="clientRegisterForm">
+                    <div class="form-group">
+                        <label for="clientName">Nom complet</label>
+                        <input type="text" id="clientName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientEmail">Email</label>
+                        <input type="email" id="clientEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">Téléphone</label>
+                        <input type="tel" id="clientPhone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPassword">Mot de passe</label>
+                        <input type="password" id="clientPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientConfirmPassword">Confirmer le mot de passe</label>
+                        <input type="password" id="clientConfirmPassword" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-block">S'inscrire</button>
+                </form>
+            </div>
+            
+            <div id="adminTab" class="tab-content">
+                <form id="adminRegisterForm">
+                    <div class="form-group">
+                        <label for="adminName">Nom complet</label>
+                        <input type="text" id="adminName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminEmail">Email professionnel</label>
+                        <input type="email" id="adminEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPhone">Téléphone</label>
+                        <input type="tel" id="adminPhone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Code d'entreprise</label>
+                        <input type="text" id="adminCode" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Mot de passe</label>
+                        <input type="password" id="adminPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminConfirmPassword">Confirmer le mot de passe</label>
+                        <input type="password" id="adminConfirmPassword" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-block">Créer un compte administrateur</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Réservation Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('bookingModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Réserver un terrain</h2>
+            </div>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="courtSelect">Sélectionnez un terrain</label>
+                    <select id="courtSelect" class="form-control" required>
+                        <option value="">-- Choisir un terrain --</option>
+                        <option value="interior1">Terrain Intérieur 1</option>
+                        <option value="interior2">Terrain Intérieur 2</option>
+                        <option value="exterior">Terrain Extérieur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingDate">Date</label>
+                    <input type="date" id="bookingDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingTime">Heure</label>
+                    <input type="time" id="bookingTime" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingDuration">Durée (heures)</label>
+                    <select id="bookingDuration" class="form-control" required>
+                        <option value="1">1 heure</option>
+                        <option value="2">2 heures</option>
+                        <option value="3">3 heures</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-block">Réserver maintenant</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>À Propos</h3>
+                <p>Padel Pro est le centre de padel de référence offrant des installations de qualité et une expérience exceptionnelle pour tous les joueurs.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">FB</a>
+                    <a href="#" class="social-icon">IG</a>
+                    <a href="#" class="social-icon">TW</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Liens Rapides</h3>
+                <ul class="footer-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#terrains">Terrains</a></li>
+                    <li><a href="#tarifs">Tarifs</a></li>
+                    <li><a href="#cours">Cours</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Heures d'Ouverture</h3>
+                <ul class="footer-links">
+                    <li>Lundi - Vendredi: 8h - 22h</li>
+                    <li>Samedi: 9h - 21h</li>
+                    <li>Dimanche: 9h - 20h</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li>123 Rue du Padel, Ville</li>
+                    <li>contact@padelclub.com</li>
+                    <li>01 23 45 67 89</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Padel Pro. Tous droits réservés.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Ouvrir les modals
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+        
+        // Fermer les modals
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+        
+        // Fermer les modals quand on clique en dehors
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+        
+        // Gestion des onglets
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Masquer tous les contenus d'onglets
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Désactiver tous les boutons d'onglets
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            // Afficher l'onglet actif et activer le bouton
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Gérer la soumission du formulaire de contact
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Votre message a été envoyé avec succès! Nous vous répondrons rapidement.");
+            this.reset();
+        });
+        
+        // Gérer la soumission du formulaire de connexion
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Connexion en cours...");
+            // Ici vous ajouteriez le code pour traiter la connexion
+            closeModal('loginModal');
+        });
+        
+        // Gérer la soumission du formulaire d'inscription client
+        document.getElementById("clientRegisterForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Votre compte client a été créé avec succès!");
+            // Ici vous ajouteriez le code pour traiter l'inscription
+            closeModal('registerModal');
+        });
+        
+        // Gérer la soumission du formulaire d'inscription administrateur
+        document.getElementById("adminRegisterForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Votre demande de compte administrateur a été soumise pour vérification.");
+            // Ici vous ajouteriez le code pour traiter l'inscription admin
+            closeModal('registerModal');
+        });
+        
+        // Gérer la soumission du formulaire de réservation
+        document.getElementById("bookingForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Votre réservation a été enregistrée avec succès!");
+            // Ici vous ajouteriez le code pour traiter la réserv
